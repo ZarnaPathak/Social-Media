@@ -1,20 +1,21 @@
-import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Main } from "./pages/main";
+import { Login } from "./pages/login";
 
 function App() {
-
   return (
     <>
       <div>
         <Router>
           <Routes>
-            <Route path='/'/>
+            <Route path="/" element={<Main />} />
+            <Route path="/login" element={<Login />}/>
           </Routes>
         </Router>
       </div>
-      <h1>Hiii</h1>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
