@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
-import img1 from "../assets/Postech.png"
+import img1 from "../assets/Postech.png";
 
 export const Navbar = () => {
   const [user] = useAuthState(auth);
@@ -25,22 +25,16 @@ export const Navbar = () => {
             <i className="fas fa-bars"></i>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <a className="navbar-brand mt-2 mt-lg-0" href="#">
-              <img
-                src={img1}
-                height="29"
-                alt="Logo"
-                loading="lazy"
-              />
-            </a>
-
+            <Link to="/" className="nav-link fs-4 navbar-brand mt-2 mt-lg-0">
+              <img src={img1} height="29" alt="Logo" loading="lazy" />
+            </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link to="/" className="nav-link fs-4">
                   Home
                 </Link>
-                
               </li>
+              &nbsp;&nbsp;&nbsp;
               {!user ? (
                 <li className="nav-item">
                   <Link to="/login" className="nav-link fs-4">
@@ -49,14 +43,15 @@ export const Navbar = () => {
                 </li>
               ) : (
                 <li className="nav-item">
-                  <Link to="/login" className="nav-link fs-4">
+                  <Link to="/createpost" className="nav-link fs-4">
                     Create Post
                   </Link>
                 </li>
               )}
             </ul>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </div>
-          
+
           <div className="d-flex align-items-center">
             <div className="dropdown">
               {user && (
