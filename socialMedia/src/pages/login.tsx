@@ -12,9 +12,18 @@ export const Login = () => {
 
   return (
     <>
-      <h1>Login</h1>
-      <p>SignIn with Google to Continue</p>
-      <button onClick={signInWithGoogle}>SignIn with Google</button>
+      <br /><br />
+     <div className="row justify-content-center">
+      <div className="card justify-content-center border border-secondary col-lg-6" style={{width:500}}>
+        <h3 className="card-title">Login</h3>
+        <div className="card-body">
+          <p className="card-text">SignIn with Google to Continue</p>
+          <button onClick={signInWithGoogle} className="btn btn-secondary">
+            SignIn with Google
+          </button>
+        </div>
+      </div>
+      </div>
     </>
   );
 };
