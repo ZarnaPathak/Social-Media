@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
+import {addDoc, collection} from "firebase/firestore"
+import { auth, database } from "../config/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 interface postData {
   title: string;
@@ -18,9 +21,16 @@ export const CreatePost = () => {
     resolver: yupResolver(schema),
   });
 
+  const postRef = collection(database, "posts")
   const navigate = useNavigate();
+  const [user] = useAuthState(auth);
 
-  const createPostForm = (data: postData) => {
+  const createPostForm = async(data: postData) => {
+    await addDoc(postRef,{
+      ...data,
+      username:user?.displayName,
+      userId:user?.uid,
+    })
     console.log(data);
     navigate("/");
   };

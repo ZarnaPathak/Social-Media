@@ -42,36 +42,35 @@ export const Navbar = () => {
                   </Link>
                 </li>
               ) : (
-                <li className="nav-item">
-                  <Link to="/createpost" className="nav-link fs-4">
-                    Create Post
-                  </Link>
-                </li>
-              )}
-            </ul>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </div>
-
-          <div className="d-flex align-items-center">
-            <div className="dropdown">
-              {user && (
                 <>
-                  <img
-                    src={user?.photoURL || "not set"}
-                    alt="Profile"
-                    className="rounded-circle"
-                    height="25"
-                    loading="lazy"
-                  />
-                  <button
-                    onClick={signOutUser}
-                    className="nav-item nav-link fs-5"
-                  >
-                    {user?.displayName}
-                  </button>
+                  <li className="nav-item">
+                    <Link to="/createpost" className="nav-link fs-4">
+                      Create Post
+                    </Link>
+                  </li>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <div className="d-flex align-items-center">
+                    {user && (
+                      <>
+                        <img
+                          src={user?.photoURL || "not set"}
+                          alt="Profile"
+                          className="rounded-circle"
+                          height="25"
+                          loading="lazy"
+                        />
+                        <button
+                          onClick={signOutUser}
+                          className="nav-item nav-link fs-5"
+                        >
+                          Log Out
+                        </button>
+                      </>
+                    )}
+                  </div>
                 </>
               )}
-            </div>
+            </ul>
           </div>
         </div>
       </nav>
