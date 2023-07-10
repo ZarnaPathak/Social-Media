@@ -3,8 +3,9 @@ import { auth } from "../config/firebase";
 import { getDocs, collection } from "firebase/firestore";
 import { database } from "../config/firebase";
 import { useEffect, useState } from "react";
+import { Post } from "../components/posts";
 
-interface postCheck {
+export interface postCheck {
   id: string;
   userId: string;
   title: string;
@@ -30,27 +31,10 @@ export const Main = () => {
   }, []);
 
   return (
-    <>
-      <br />
-      <br />
-      <h1 className="text-center">Main Page</h1>
-      <br />
-      <div className="row justify-content-center">
-        {postList?.map((post) => (
-          <div className="card justify-content-center border border-secondary col-5">
-            <div className="justify-content-right col-lg-3">
-              <p>{user?.displayName}</p>
-            </div>
-            <h3 className="card-title">{post.title}</h3>
-            <div className="card-body">
-              <p className="card-text">{post.discription}</p>
-            </div>
-            <div className="d-flex justify-content-end">
-              <i className="bi bi-heart fs-3"></i>
-            </div>
-          </div>
-        ))}
-      </div>
+    <><br />
+    {postList?.map((post) => (
+    <Post post={post}/>
+    ))}
     </>
   );
 };
