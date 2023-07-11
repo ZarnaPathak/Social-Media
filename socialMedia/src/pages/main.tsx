@@ -30,13 +30,13 @@ export const Main = () => {
 
   return (
     <>
-      <br />
+      <br /><br />
+      <div className="row justify-content-center">
       {postList?.map((post) => (
-        
-      <div className="row">
         <Post post={post} />
+        ))}
       </div>
-      ))}
+      
     </>
   );
 };

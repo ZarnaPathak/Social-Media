@@ -11,7 +11,7 @@ import { postCheck } from "../pages/main";
 import { auth, database } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 interface Props {
   post: postCheck;
@@ -40,25 +40,25 @@ export const Post = (props: Props) => {
   };
 
   const addLike = async () => {
-    try{
-    const newDoc = await addDoc(likeRef, {
-      userId: user?.uid,
-      postId: post.id,
-    });
-    if (user) {
-      setLikes((prev) =>
-        prev
-          ? [...prev, { userId: user.uid, likeId: newDoc.id }]
-          : [{ userId: user.uid, likeId: newDoc.id }]
-      );
-    }}
-    catch{
+    try {
+      const newDoc = await addDoc(likeRef, {
+        userId: user?.uid,
+        postId: post.id,
+      });
+      if (user) {
+        setLikes((prev) =>
+          prev
+            ? [...prev, { userId: user.uid, likeId: newDoc.id }]
+            : [{ userId: user.uid, likeId: newDoc.id }]
+        );
+      }
+    } catch {
       Swal.fire({
-        title: 'Login!',
-        text: 'Do you want to continue? Please Login!!',
-        icon: 'error',
-        confirmButtonText: 'OK'
-      })
+        title: "Login!",
+        text: "Do you want to continue? Please Login!!",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
 
@@ -85,15 +85,11 @@ export const Post = (props: Props) => {
 
   return (
     <>
-      <div className="col-lg-5">
-        <div className="card">
-          <div className="justify-content-right col-lg-3">
-            <p>{post.username}</p>
-          </div>
-          <div className="card-body">
-            <h5 className="card-title">{post.title}</h5>
-            <p className="card-text">{post.discription}</p>
-            <div className="d-flex justify-content-end">
+      <div className="col-5 mt-3 card">
+        <span className="text-right" style={{alignSelf:"end"}}>@{post.username}</span>
+        <p className="fs-4">{post.title}</p>
+        <p className="fs-6">{post.discription}</p>
+        <div className="d-flex justify-content-start">
               <button
                 className="btn"
                 onClick={isUserLiked ? deleteLike : addLike}
@@ -104,14 +100,15 @@ export const Post = (props: Props) => {
                     className={
                       isUserLiked ? "bi bi-heart-fill fs-3" : "bi bi-heart fs-3"
                     }
+                    style={{ color: "pink", alignSelf: "end"}}
                   ></i>
                 </span>
-                {likes && <p>{likes.length}</p>}
               </button>
+              {likes && <p>{likes.length}</p>}
             </div>
-          </div>
-        </div>
+
       </div>
+      &nbsp;&nbsp;&nbsp;&nbsp;
     </>
   );
 };
